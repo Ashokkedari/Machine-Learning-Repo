@@ -1,7 +1,6 @@
 """
 Q-Learning on FrozenLake from Scratch
 
-Assembled from your step-by-step solutions.
 """
 
 import numpy as np
