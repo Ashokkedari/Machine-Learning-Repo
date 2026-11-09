@@ -1,31 +1,77 @@
-
 # Q-Learning on FrozenLake from Scratch
 
-Build a tabular Q-learning agent that learns to navigate the FrozenLake environment using an epsilon-greedy exploration strategy. I implement every piece from the Q-table and update rule to training loops and greedy evaluation.
+This project implements a tabular Q-learning agent for the FrozenLake environment from Gymnasium. The goal is to learn the optimal policy for navigating a 4x4 grid while avoiding holes and reaching the goal tile.
+
+The implementation is intentionally educational: it builds the core RL components step by step, including the Q-table, epsilon-greedy action selection, temporal-difference update, episode loop, and greedy policy evaluation.
+
+## What this project covers
+
+The code is structured around the following building blocks:
+
+- `init_q_table` — initialize the Q-values for all state-action pairs
+- `max_q_value` — compute the maximum Q-value for a given state
+- `greedy_action` — choose the best action from the current Q-table
+- `sample_random_action` — explore randomly from the action space
+- `should_explore` — decide whether to explore using epsilon
+- `epsilon_greedy_action` — mix exploration and exploitation
+- `decay_epsilon` — reduce exploration over time
+- `td_target` — compute the TD target for Q-learning
+- `td_error` — calculate the Bellman error
+- `q_learning_update` — apply the Q-learning update rule
+- `interaction_step` — perform one environment step and update Q-values
+- `run_training_episode` — run a full training episode
+- `train_q_learning` — train the agent over many episodes
+- `extract_greedy_policy` — derive the policy from the learned Q-table
+- `run_greedy_episode` — evaluate a greedy rollout
+- `evaluate_success_rate` — measure success over repeated runs
+
+## Project files
+
+- `model.py` — core Q-learning implementation
+- `scoffold.py` — visualization and evaluation script for training curves and policy plots
+- `readme` — project notes and usage instructions
+
+## Requirements
+
+Install the required Python packages:
+
+```bash
+pip install numpy gymnasium matplotlib
+```
+
+For FrozenLake specifically, Gymnasium's toy-text environment is included with the standard package installation in most setups. If needed, use:
+
+```bash
+pip install "gymnasium[toy-text]" matplotlib numpy
+```
 
 ## How to run
 
+From the project directory:
+
 ```bash
-python scaffold.py
+python scoffold.py
 ```
 
-## Steps
+This script trains a Q-learning agent, reports summary statistics, and plots the learning curve and greedy policy.
 
-- [x] **1.** init_q_table
-- [x] **2.** max_q_value
-- [x] **3.** greedy_action
-- [x] **4.** sample_random_action
-- [x] **5.** should_explore
-- [x] **6.** epsilon_greedy_action
-- [x] **7.** decay_epsilon
-- [x] **8.** td_target
-- [x] **9.** td_error
-- [x] **10.** q_learning_update
-- [x] **11.** interaction_step
-- [x] **12.** run_training_episode
-- [x] **13.** train_q_learning
-- [x] **14.** extract_greedy_policy
-- [x] **15.** run_greedy_episode
-- [x] **16.** evaluate_success_rate
+## Example workflow
+
+1. Train the agent with Q-learning.
+2. Extract the greedy policy from the learned Q-table.
+3. Evaluate the success rate over multiple episodes.
+4. Visualize the learning process and final policy.
+
+## Expected behavior
+
+The agent learns to prefer safe paths and avoid holes, eventually reaching the goal tile with a high probability. In a deterministic FrozenLake setup (`is_slippery=False`), the Q-learning agent often converges well and achieves a strong success rate after enough training episodes.
+
+## Notes
+
+- This project is meant as a learning-focused implementation rather than a production RL framework.
+- The project includes a deliberately step-by-step style to make the underlying Q-learning algorithm easy to understand.
+- Some file names in the repository appear to be informal or slightly misspelled (for example, `scoffold.py`), but the functionality is the same.
 
 ---
+
+This is an older beginner-friendly reinforcement learning project designed to demonstrate Q-learning from first principles on the FrozenLake environment.
